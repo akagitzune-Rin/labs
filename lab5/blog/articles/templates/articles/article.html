@@ -1,0 +1,33 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ article.title }} - Django public blog</title>
+    <link rel="stylesheet" href="{% static 'css/article.css' %}">
+</head>
+<body>
+    <div class="container">
+        <header class="site-header">
+            <a href="{% url 'archive' %}" class="site-title">Django public blog</a>
+            <a href="{% url 'archive' %}" class="archive-link">Все статьи</a>
+        </header>
+        
+        <main>
+            <a href="{% url 'archive' %}" class="back-link">← Все статьи</a>
+            
+            <article class="article-detail">
+                <h1 class="article-title">{{ article.title }}</h1>
+                <div class="article-meta">
+                    <span class="article-author">{{ article.author }}</span>
+                    <span class="article-date">{{ article.created_date|date:"d F Y" }}</span>
+                </div>
+                <div class="article-content">
+                    {{ article.text|linebreaks }}
+                </div>
+            </article>
+        </main>
+    </div>
+</body>
+</html>

@@ -1,0 +1,188 @@
+/* Общие стили */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    color: #ffffff;
+    background-color: #1abc9c;
+    background-image: linear-gradient(135deg, #1abc9c 0%, #16a085 100%);
+    min-height: 100vh;
+}
+
+.container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 30px 20px;
+}
+
+/* Шапка сайта */
+.site-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 40px;
+    padding-bottom: 20px;
+    border-bottom: 2px solid rgba(255, 255, 255, 0.3);
+}
+
+.site-title {
+    background-color: rgba(0, 0, 0, 0.2);
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 1.8em;
+    font-weight: 700;
+    color: #ffffff;
+    text-decoration: none;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.site-title:hover {
+    background-color: rgba(0, 0, 0, 0.3);
+}
+
+.archive-link {
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 1.2em;
+    font-weight: 600;
+    padding: 10px 15px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.archive-link:hover {
+    background-color: rgba(0, 0, 0, 0.2);
+}
+
+/* Заголовок статьи */
+.article-title {
+    font-size: 2em;
+    font-weight: 700;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid rgba(255, 255, 255, 0.4);
+    color: #ffffff;
+}
+
+.article-title a {
+    color: #ffffff;
+    text-decoration: none;
+    transition: opacity 0.3s ease;
+}
+
+.article-title a:hover {
+    opacity: 0.8;
+}
+
+/* Мета-информация (автор и дата) */
+.article-meta {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    font-size: 1em;
+    font-weight: 600;
+}
+
+.article-author {
+    color: #ffffff;
+}
+
+.article-date {
+    color: #ffffff;
+    font-style: italic;
+}
+
+/* Текст статьи */
+.article-content {
+    font-size: 1em;
+    line-height: 1.8;
+    text-align: justify;
+    margin-bottom: 20px;
+}
+
+.article-content p {
+    margin-bottom: 15px;
+}
+
+/* Отрывок текста (для архива) */
+.article-excerpt {
+    color: #ffffff;
+    opacity: 0.9;
+}
+
+/* Карточка статьи в архиве */
+.article-preview {
+    margin-bottom: 40px;
+    padding-bottom: 30px;
+    border-bottom: 2px solid rgba(255, 255, 255, 0.3);
+}
+
+.article-preview:last-child {
+    border-bottom: none;
+}
+
+/* Ссылка "Все статьи" на странице статьи */
+.back-link {
+    display: inline-block;
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 1.2em;
+    font-weight: 600;
+    padding: 10px 15px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+    margin-bottom: 30px;
+}
+
+.back-link:hover {
+    background-color: rgba(0, 0, 0, 0.2);
+}
+
+/* Сообщение, если статей нет */
+.no-articles {
+    text-align: center;
+    color: #ffffff;
+    font-size: 1.3em;
+    padding: 50px;
+    opacity: 0.8;
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+    .site-header {
+        flex-direction: column;
+        text-align: center;
+        gap: 15px;
+    }
+    
+    .article-meta {
+        flex-direction: column;
+        gap: 5px;
+    }
+    
+    .article-title {
+        font-size: 1.5em;
+    }
+    
+    .site-title {
+        font-size: 1.4em;
+    }
+}
+
+/* Дополнительные стили для красоты */
+.article-content p:first-letter {
+    font-size: 1.5em;
+    font-weight: 700;
+}
+
+/* Подчёркивание заголовков в архиве */
+.article-preview .article-title {
+    text-decoration: underline;
+    text-decoration-thickness: 2px;
+    text-underline-offset: 5px;
+}

@@ -1,0 +1,83 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Создание статьи - Django public blog</title>
+    <link rel="stylesheet" href="{% static 'css/article.css' %}">
+</head>
+<body>
+    <div class="container">
+        <header class="site-header">
+            <a href="{% url 'archive' %}" class="site-title">Django public blog</a>
+            <a href="{% url 'archive' %}" class="archive-link">Все статьи</a>
+        </header>
+        
+        <main>
+            <a href="{% url 'archive' %}" class="back-link">← Все статьи</a>
+            
+            <article class="article-detail">
+                <h1 class="article-title">Создание новой статьи</h1>
+                
+                <!-- Вывод ошибок -->
+                {% if errors %}
+                <div class="error-messages">
+                    <h3>Ошибки:</h3>
+                    <ul>
+                        {% for error in errors %}
+                        <li>{{ error }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                {% endif %}
+                
+                <!-- Форма создания статьи -->
+                <form method="POST" class="create-form">
+                    {% csrf_token %}
+                    
+                    <div class="form-group">
+                        <label for="title">Заголовок статьи *</label>
+                        <input 
+                            type="text" 
+                            id="title" 
+                            name="title" 
+                            placeholder="Введите заголовок статьи"
+                            value="{{ request.POST.title|default:'' }}"
+                            required
+                        >
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="author">Автор *</label>
+                        <input 
+                            type="text" 
+                            id="author" 
+                            name="author" 
+                            placeholder="Введите имя автора"
+                            value="{{ request.POST.author|default:'' }}"
+                            required
+                        >
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="text">Текст статьи *</label>
+                        <textarea 
+                            id="text" 
+                            name="text" 
+                            rows="10" 
+                            placeholder="Введите текст статьи..."
+                            required
+                        >{{ request.POST.text|default:'' }}</textarea>
+                    </div>
+                    
+                    <div class="form-actions">
+                        <button type="submit" class="btn-submit">Опубликовать статью</button>
+                        <a href="{% url 'archive' %}" class="btn-cancel">Отмена</a>
+                    </div>
+                </form>
+            </article>
+        </main>
+    </div>
+</body>
+</html>

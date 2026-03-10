@@ -1,0 +1,78 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Django public blog - Архив</title>
+    <link rel="stylesheet" href="{% static 'css/article.css' %}">
+</head>
+<body>
+    <!-- Параллакс-шапка -->
+    <div class="parallax-header">
+        <!-- иконки для параллакса -->
+        <div class="parallax-icon icon-1" data-speed="0.1">🍃</div>
+        <div class="parallax-icon icon-2" data-speed="0.2">🌿</div>
+        <div class="parallax-icon icon-3" data-speed="0.3">🍃</div>
+        <div class="parallax-icon icon-4" data-speed="0.4">🍂</div>
+        <div class="parallax-icon icon-5" data-speed="0.5">🍃</div>
+        <div class="parallax-icon icon-6" data-speed="0.6">🌿</div>
+        
+        <!-- Текстовая область и ссылки -->
+        <div class="header-content">
+            <header class="site-header">
+                <a href="{% url 'archive' %}" class="site-title">Django public blog</a>
+                <nav class="user-nav">
+                    {% if user.is_authenticated %}
+                        <span class="username">👤 {{ user.username }}</span>
+                        <a href="{% url 'create_post' %}" class="nav-link">+ Новая статья</a>
+                        <a href="{% url 'logout' %}" class="nav-link">Выйти</a>
+                    {% else %}
+                        <a href="{% url 'login' %}" class="nav-link">Войти</a>
+                        <a href="{% url 'register' %}" class="nav-link">Регистрация</a>
+                    {% endif %}
+                </nav>
+            </header>
+        </div>
+    </div>
+    
+    <!-- Основной контент -->
+    <div class="container">
+        <main>
+            {% if posts %}
+                {% for post in posts %}
+                <article class="article-preview one-post" data-post-id="{{ post.id }}">
+                    <!-- Тень для подсветки -->
+                    <div class="one-post-shadow"></div>
+                    
+                    <h2 class="article-title">
+                        <a href="{% url 'article' article_id=post.id %}">{{ post.title }}</a>
+                    </h2>
+                    
+                    <!-- Кнопка сворачивания -->
+                    <button class="fold-btn" type="button">Свернуть</button>
+                    
+                    <div class="post-content">
+                        <div class="article-meta">
+                            <span class="article-author">{{ post.author }}</span>
+                            <span class="article-date">{{ post.created_date|date:"d F Y" }}</span>
+                        </div>
+                        <div class="article-excerpt">
+                            {{ post.get_excerpt }}
+                        </div>
+                    </div>
+                </article>
+                {% endfor %}
+            {% else %}
+                <p class="no-articles">Статей пока нет.</p>
+            {% endif %}
+        </main>
+    </div>
+    
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="{% static 'js/helloworld.js' %}"></script>
+    <script src="{% static 'js/fold-post.js' %}"></script>
+    <script src="{% static 'js/highlight-post.js' %}"></script>
+    <script src="{% static 'js/parallax.js' %}"></script>
+</body>
+</html>

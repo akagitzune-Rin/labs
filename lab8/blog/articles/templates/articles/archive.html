@@ -1,0 +1,59 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Django public blog - Архив</title>
+    <link rel="stylesheet" href="{% static 'css/article.css' %}">
+</head>
+<body>
+    <div class="container">
+        <header class="site-header">
+    <a href="{% url 'archive' %}" class="site-title">Django public blog</a>
+    <nav class="user-nav">
+        {% if user.is_authenticated %}
+            <span class="username">👤 {{ user.username }}</span>
+            <a href="{% url 'create_post' %}" class="nav-link">+ Новая статья</a>
+            <a href="{% url 'logout' %}" class="nav-link">Выйти</a>
+        {% else %}
+            <a href="{% url 'login' %}" class="nav-link">Войти</a>
+            <a href="{% url 'register' %}" class="nav-link">Регистрация</a>
+        {% endif %}
+    </nav>
+</header>
+        
+        <main>
+            {% if posts %}
+                {% for post in posts %} 
+<article class="article-preview one-post" data-post-id="{{ post.id }}">
+    <div class="one-post-shadow"></div>
+    <h2 class="article-title">
+        <a href="{% url 'article' article_id=post.id %}">{{ post.title }}</a>
+    </h2>
+    
+    <!-- Кнопка сворачивания -->
+    <button class="fold-btn" type="button">Свернуть</button>
+    
+    <div class="post-content">
+        <div class="article-meta">
+            <span class="article-author">{{ post.author }}</span>
+            <span class="article-date">{{ post.created_date|date:"d F Y" }}</span>
+        </div>
+        <div class="article-excerpt">
+            {{ post.get_excerpt }}
+        </div>
+    </div>
+</article>
+{% endfor %} 
+            {% else %}
+                <p class="no-articles">Статей пока нет.</p>
+            {% endif %}
+        </main>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="{% static 'js/helloworld.js' %}"></script>
+    <script src="{% static 'js/fold-post.js' %}"></script>
+    <script src="{% static 'js/highlight-post.js' %}"></script>
+</body>
+</html>

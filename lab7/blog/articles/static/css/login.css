@@ -1,0 +1,208 @@
+/* Общие стили */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    color: #ffffff;
+    background: linear-gradient(135deg, #1abc9c 0%, #16a085 100%);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+/* Контейнер авторизации */
+.auth-container {
+    width: 100%;
+    max-width: 450px;
+}
+
+/* Карточка формы */
+.auth-card {
+    background-color: rgba(0, 0, 0, 0.3);
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-radius: 10px;
+    padding: 40px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+/* Заголовок сайта */
+.auth-header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.site-title {
+    font-size: 1.6em;
+    font-weight: 700;
+    color: #ffffff;
+    text-decoration: none;
+    background-color: rgba(0, 0, 0, 0.2);
+    padding: 10px 20px;
+    border-radius: 5px;
+    display: inline-block;
+    transition: background-color 0.3s ease;
+}
+
+.site-title:hover {
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+/* Заголовок формы */
+.auth-title {
+    text-align: center;
+    font-size: 1.8em;
+    margin-bottom: 30px;
+    color: #ffffff;
+    border-bottom: 2px solid rgba(255, 255, 255, 0.4);
+    padding-bottom: 15px;
+}
+
+/* Группа полей формы */
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: #ffffff;
+    font-size: 1em;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 12px 15px;
+    font-size: 1em;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-radius: 5px;
+    background-color: rgba(255, 255, 255, 0.1);
+    color: #ffffff;
+    transition: all 0.3s ease;
+}
+
+.form-group input::placeholder {
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.form-group input:focus {
+    outline: none;
+    border-color: #ffffff;
+    background-color: rgba(255, 255, 255, 0.2);
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+}
+
+/* Кнопка отправки */
+.form-actions {
+    margin-top: 25px;
+}
+
+.btn-submit {
+    width: 100%;
+    padding: 14px 25px;
+    font-size: 1.1em;
+    font-weight: 600;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: rgba(0, 0, 0, 0.3);
+    color: #ffffff;
+    border: 2px solid rgba(255, 255, 255, 0.4);
+    transition: all 0.3s ease;
+}
+
+.btn-submit:hover {
+    background-color: rgba(0, 0, 0, 0.5);
+    border-color: #ffffff;
+}
+
+/* Блок ошибок */
+.error-messages {
+    background-color: rgba(231, 76, 60, 0.3);
+    border: 2px solid #e74c3c;
+    border-radius: 5px;
+    padding: 15px;
+    margin-bottom: 20px;
+}
+
+.error-messages h3 {
+    color: #e74c3c;
+    margin-bottom: 10px;
+    font-size: 1.1em;
+}
+
+.error-messages ul {
+    margin-left: 20px;
+    color: #ffffff;
+}
+
+.error-messages li {
+    margin-bottom: 5px;
+}
+
+/* Сообщения Django */
+.messages {
+    margin-bottom: 20px;
+}
+
+.message {
+    padding: 12px 15px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+.message.success {
+    background-color: rgba(46, 204, 113, 0.3);
+    border: 2px solid #2ecc71;
+    color: #ffffff;
+}
+
+.message.info {
+    background-color: rgba(52, 152, 219, 0.3);
+    border: 2px solid #3498db;
+    color: #ffffff;
+}
+
+.message.error {
+    background-color: rgba(231, 76, 60, 0.3);
+    border: 2px solid #e74c3c;
+    color: #ffffff;
+}
+
+/* Подвал формы */
+.auth-footer {
+    text-align: center;
+    margin-top: 25px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.3);
+    color: #ffffff;
+}
+
+.auth-footer a {
+    color: #ffffff;
+    text-decoration: underline;
+    font-weight: 600;
+}
+
+.auth-footer a:hover {
+    text-decoration: none;
+}
+
+/* Адаптивность */
+@media (max-width: 480px) {
+    .auth-card {
+        padding: 25px 20px;
+    }
+    
+    .auth-title {
+        font-size: 1.5em;
+    }
+}

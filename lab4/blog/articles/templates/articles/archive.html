@@ -1,0 +1,39 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Django public blog - Архив</title>
+    <link rel="stylesheet" href="{% static 'css/article.css' %}">
+</head>
+<body>
+    <div class="container">
+        <header class="site-header">
+            <a href="{% url 'archive' %}" class="site-title">Django public blog</a>
+            <a href="{% url 'archive' %}" class="archive-link">Все статьи</a>
+        </header>
+        
+        <main>
+            {% if posts %}
+                {% for post in posts %}
+                <article class="article-preview">
+                    <h2 class="article-title">
+                        <a href="{% url 'article' article_id=post.id %}">{{ post.title }}</a>
+                    </h2>
+                    <div class="article-meta">
+                        <span class="article-author">{{ post.author }}</span>
+                        <span class="article-date">{{ post.created_date|date:"d F Y" }}</span>
+                    </div>
+                    <div class="article-excerpt">
+                        {{ post.get_excerpt }}
+                    </div>
+                </article>
+                {% endfor %}
+            {% else %}
+                <p class="no-articles">Статей пока нет.</p>
+            {% endif %}
+        </main>
+    </div>
+</body>
+</html>

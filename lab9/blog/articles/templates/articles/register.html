@@ -1,0 +1,106 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Регистрация - Django public blog</title>
+    <!-- Подключаем основные стили -->
+    <link rel="stylesheet" href="{% static 'css/login.css' %}">
+    <!-- Подключаем дополнительные стили для регистрации -->
+    <link rel="stylesheet" href="{% static 'css/register.css' %}">
+</head>
+<body>
+    <div class="auth-container">
+        <div class="auth-card">
+            <header class="auth-header">
+                <a href="{% url 'archive' %}" class="site-title">Django public blog</a>
+            </header>
+            
+            <h1 class="auth-title">Регистрация</h1>
+            
+            <!-- Вывод ошибок -->
+            {% if errors %}
+            <div class="error-messages">
+                <h3>Ошибки:</h3>
+                <ul>
+                    {% for error in errors %}
+                    <li>{{ error }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+            {% endif %}
+            
+            <!-- Сообщения Django -->
+            {% if messages %}
+            <div class="messages">
+                {% for message in messages %}
+                <div class="message {{ message.tags }}">
+                    {{ message }}
+                </div>
+                {% endfor %}
+            </div>
+            {% endif %}
+            
+            <!-- Форма регистрации -->
+            <form method="POST" class="auth-form">
+                {% csrf_token %}
+                
+                <div class="form-group">
+                    <label for="username">Имя пользователя *</label>
+                    <input 
+                        type="text" 
+                        id="username" 
+                        name="username" 
+                        placeholder="Придумайте имя пользователя"
+                        value="{{ request.POST.username|default:'' }}"
+                        required
+                        autofocus
+                    >
+                </div>
+                
+                <div class="form-group">
+                    <label for="email">Email (необязательно)</label>
+                    <input 
+                        type="email" 
+                        id="email" 
+                        name="email" 
+                        placeholder="your@email.com"
+                        value="{{ request.POST.email|default:'' }}"
+                    >
+                </div>
+                
+                <div class="form-group">
+                    <label for="password">Пароль *</label>
+                    <input 
+                        type="password" 
+                        id="password" 
+                        name="password" 
+                        placeholder="Минимум 8 символов"
+                        required
+                    >
+                </div>
+                
+                <div class="form-group">
+                    <label for="password_confirm">Подтверждение пароля *</label>
+                    <input 
+                        type="password" 
+                        id="password_confirm" 
+                        name="password_confirm" 
+                        placeholder="Повторите пароль"
+                        required
+                    >
+                </div>
+                
+                <div class="form-actions">
+                    <button type="submit" class="btn-submit">Зарегистрироваться</button>
+                </div>
+            </form>
+            
+            <div class="auth-footer">
+                <p>Уже есть аккаунт? <a href="{% url 'login' %}">Войти</a></p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
